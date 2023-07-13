@@ -21,9 +21,13 @@ export default {
                 "purple": "#8B60ED",
             },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+            },
+            fontSize: {
+                xxs: ['0.625rem', {lineHeight: '1rem'}]
             },
             spacing: {
+                44: "11rem",
                 70: "17.5rem",
                 175: "43.75rem",
             },
