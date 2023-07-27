@@ -63,26 +63,42 @@
                             <div>&bull;</div>
                             <div class="text-gray-900">3 comentarios</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        {{-- estado container --}}
+                        <div x-data="{ isOpen: false }"
+                            class="flex items-center space-x-2"
+                        >
+                            {{-- estado de la idea --}}
                             <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
                                 Abierta
                             </div>
-                        </div> {{-- fin estado --}}
-                        <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3">
-                            <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                            <ul class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 ml-8">
-                                <li>
-                                    <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                                        Reportar Spam
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                                        Borrar Idea
-                                    </a>
-                                </li>
-                            </ul>
-                        </button>
+                            {{-- fin del estado --}}
+                            {{-- acciones --}}
+                            <button @click="isOpen = !isOpen"
+                                class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3">
+                                <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
+                                {{-- dialgo de opciones --}}
+                                <ul x-cloak
+                                    x-show="isOpen"
+                                    x-transition.origin.top.left
+                                    @click.away="isOpen = false"
+                                    @keydown.escape.window="isOpen = false"
+                                    class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 ml-8">
+                                    <li>
+                                        <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
+                                            Reportar Spam
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
+                                            Borrar Idea
+                                        </a>
+                                    </li>
+                                </ul>
+                                {{-- fin de dialogo de opciones --}}
+                            </button>
+                            {{-- fin de acciones --}}
+                        </div>
+                        {{-- fin estado container --}}
                     </div> {{-- fin comentarios --}}
 
                 </div>
