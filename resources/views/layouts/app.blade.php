@@ -14,9 +14,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body class="font-sans bg-background-gray text-gray-900 text-sm">
-        <header class="flex items-center justify-between px-8 py-4">
+        <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
             <a href="#">
                 Logo Teccom
             </a>
@@ -40,9 +41,9 @@
                 </a>
             </div>
         </header>
-        <main class="container mx-auto flex max-w-custom">
-            <div class="w-70 mr-5">
-                <div class="bg-white border-2 border-blue rounded-xl mt-16">
+        <main class="container mx-auto flex flex-col md:flex-row max-w-custom">
+            <div class="w-70 mx-auto md:mx-0 md:top-8 mr-5">
+                <div class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16">
                     {{-- titulo --}}
                     <div class="text-center px-6 py-2 pt-6">
                         <h3 class="font-semibold text-base">
@@ -88,8 +89,8 @@
                     </form>
                 </div>
             </div>
-            <div class="w-175">
-                <nav class="flex items-center justify-between text-xs">
+            <div class="w-full md:w-175 px-2 md:px-0">
+                <nav class="md:flex hidden items-center justify-between text-xs">
                     <ul class="flex uppercase border-b-4 pb-3 font-semibold space-x-10">
                         <li>
                             <a class="border-b-4 border-blue pb-3" href="#">Todas las ideas (87)</a>
@@ -115,5 +116,6 @@
                 </div>
             </div>
         </main>
+        @livewireScripts
     </body>
 </html>
