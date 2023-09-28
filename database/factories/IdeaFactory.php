@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Categoria;
+use App\Models\Estado;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,6 +21,8 @@ class IdeaFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'categoria_id' => Categoria::inRandomOrder()->first()->id,
+            'estado_id' => Estado::inRandomOrder()->first()->id,
             'title' => ucwords(fake()->words(4, true)),
             'slug' => null,
             'description' => fake()->paragraph(5),

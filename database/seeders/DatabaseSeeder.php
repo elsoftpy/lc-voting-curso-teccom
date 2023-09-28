@@ -14,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            CategoriaSeeder::class,
+            EstadoSeeder::class,
+        ]);
         Idea::factory(30)->create();
     }
 }

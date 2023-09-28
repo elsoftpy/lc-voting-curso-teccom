@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,4 +49,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+
+    public function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->getAvatar()
+        );
+    }
+
+    protected function getAvatar(): string
+    {
+        $primeraLetra = $this->email[0];
+
+        if (is_numeric($primeraLetra)) {
+            $indiceAvatar = ord(strtolower($primeraLetra)) - 21;
+        } else {
+            $indiceAvatar = ord(strtolower($primeraLetra)) - 96;
+        }
+
+        return 'https://www.gravatar.com/avatar/'
+            .md5($this->email)
+            .'?s=200'
+            .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
+            .$indiceAvatar
+            .'.png';
+    }
+
 }

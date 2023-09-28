@@ -10,7 +10,7 @@ class IdeaController extends Controller
     public function index()
     {
         return view('ideas.index', [
-            'ideas' => Idea::all(),
+            'ideas' => Idea::with(['user', 'categoria'])->simplePaginate(Idea::CANTIDAD_IDEAS_PAGINA),
         ]);
     }
 

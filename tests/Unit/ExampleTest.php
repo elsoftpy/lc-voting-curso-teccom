@@ -13,4 +13,10 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function test_verificar_suma_de_2_mas_2_da_4()
+    {
+        $x = 2 + 3;
+        $this->assertEquals(4, $x, 'hola');
+    }
 }
