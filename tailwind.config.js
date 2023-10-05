@@ -8,7 +8,12 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    safelist: [
+        'bg-purple',
+        'bg-red',
+        'bg-yellow',
+        'bg-green',
+    ],
     theme: {
         extend: {
             colors: {

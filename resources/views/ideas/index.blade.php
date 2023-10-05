@@ -46,11 +46,12 @@
                         </div>
                     </div>
                     <div class="mt-8">
-                        <button class="w-20 bg-gray-200 border border-gray-200 hover:border-gray-400 text-xxs font-bold uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
+                        <button class="w-20 bg-gray-200 disabled:bg-blue border border-gray-200 hover:border-gray-400 text-xxs font-bold uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
                             Votar
                         </button>
                     </div>
                 </div> {{-- fin votos  --}}
+
                 <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
                     <div class="flex-none mx-4 md:mx-0">
                         <a href="#">
@@ -79,7 +80,7 @@
                                 class="flex items-center space-x-2 mt-2 md:mt-0"
                             >
                                 {{-- estado de la idea --}}
-                                <div class="{{$idea->estado->id == 1 ? 'bg-green text-white' : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
+                                <div class="{{ $idea->estado->getClasesEstado() }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
                                     {{ $idea->estado->nombre }}
                                 </div>
                                 {{-- fin del estado --}}
