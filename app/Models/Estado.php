@@ -9,6 +9,10 @@ class Estado extends Model
 {
     use HasFactory;
 
+    const ABIERTA = 1;
+    const CONSIDERANDO = 2;
+    const CERRADA = 3;
+
     protected $table = 'estados';
 
     protected $fillable = [
