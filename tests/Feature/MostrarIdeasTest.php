@@ -23,7 +23,7 @@ class MostrarIdeasTest extends TestCase
         User::factory(1)->create();
         $user = User::first();
         $estado = Estado::create([
-            'nombre' => 'lalalala',
+            'nombre' => 'Considerando',
         ]);
 
         $estadoDos = Estado::create([
@@ -76,7 +76,7 @@ class MostrarIdeasTest extends TestCase
     ]);
 
     $estado = Estado::create([
-        'nombre' => 'lalala',
+        'nombre' => 'Considerando',
     ]);
 
     $ideaUno = Idea::create([
@@ -116,11 +116,11 @@ class MostrarIdeasTest extends TestCase
         $ultimaIdea->save();
 
         $response = $this->get('/');
-        $response->assertSee($ideaUno->title);
-        $response->assertDontSee($ultimaIdea->title);
-
-        $response = $this->get('/?page=2');
         $response->assertDontSee($ideaUno->title);
         $response->assertSee($ultimaIdea->title);
+
+        $response = $this->get('/?page=2');
+        $response->assertSee($ideaUno->title);
+        $response->assertDontSee($ultimaIdea->title);
    }
 }
