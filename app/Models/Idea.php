@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Idea extends Model
 {
@@ -36,6 +37,16 @@ class Idea extends Model
     public function estado()
     {
         return $this->belongsTo(Estado::class);
+    }
+
+    /**
+     * Get the votos that owns the Idea
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function votos(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, Voto::class);
     }
 
     public function sluggable(): array

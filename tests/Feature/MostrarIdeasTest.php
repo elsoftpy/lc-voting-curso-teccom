@@ -16,10 +16,10 @@ use Tests\TestCase;
 
 class MostrarIdeasTest extends TestCase
 {
-   use RefreshDatabase;
+    use RefreshDatabase;
 
-   public function test_lista_de_ideas_se_muestra_en_la_pagina_principal()
-   {
+    public function test_lista_de_ideas_se_muestra_en_la_pagina_principal()
+    {
         User::factory(1)->create();
         $user = User::first();
         $estado = Estado::create([
@@ -65,39 +65,41 @@ class MostrarIdeasTest extends TestCase
         $response->assertSee($ideaDos->description);
         $response->assertSee($ideaDos->categoria->nombre_categoria);
         $response->assertSee($ideaDos->estado->nombre);
-   }
+    }
 
-   public function test_una_idea_se_muestra_en_la_pagina_detalle()
-   {
-    User::factory(1)->create();
-    $user = User::first();
-    $categoria = Categoria::create([
-        'nombre_categoria' => 'Web App',
-    ]);
+    public function test_una_idea_se_muestra_en_la_pagina_detalle()
+    {
+        User::factory(1)->create();
+        $user = User::first();
+        $categoria = Categoria::create([
+            'nombre_categoria' => 'Web App',
+        ]);
 
-    $estado = Estado::create([
-        'nombre' => 'Considerando',
-    ]);
+        $estado = Estado::create([
+            'nombre' => 'Considerando',
+        ]);
 
-    $ideaUno = Idea::create([
-        'title' => 'Mi primera idea',
-        'categoria_id' => $categoria->id,
-        'estado_id' => $estado->id,
-        'description' => 'Descripción de la primera idea',
-        'user_id' => $user->id,
-    ]);
+        $ideaUno = Idea::create([
+            'title' => 'Mi primera idea',
+            'categoria_id' => $categoria->id,
+            'estado_id' => $estado->id,
+            'description' => 'Descripción de la primera idea',
+            'user_id' => $user->id,
+        ]);
 
-    $response = $this->get(route('idea.show', $ideaUno));
+        $response = $this->get(route('idea.show', $ideaUno));
 
-    $response->assertSuccessful();
-    $response->assertSee($ideaUno->title);
-    $response->assertSee($ideaUno->description);
-    $response->assertSee($ideaUno->categoria->nombre_categoria);
-    $response->assertSee($ideaUno->estado->nombre);
-   }
+        $response->assertSuccessful();
+        $response->assertSee($ideaUno->title);
+        $response->assertSee($ideaUno->description);
+        $response->assertSee($ideaUno->categoria->nombre_categoria);
+        $response->assertSee($ideaUno->estado->nombre);
+    }
 
-   public function test_paginacion_funciona()
-   {
+    public function test_paginacion_funciona()
+    {
+        User::factory(1)->create();
+        $user = User::first();
         $categoria = Categoria::create([
             'nombre_categoria' => 'Categoría 1',
         ]);
@@ -106,7 +108,9 @@ class MostrarIdeasTest extends TestCase
             'nombre' => 'Abierta',
         ]);
 
-        Idea::factory(Idea::CANTIDAD_IDEAS_PAGINA + 1)->create();
+        Idea::factory(Idea::CANTIDAD_IDEAS_PAGINA + 1)->create([
+            'user_id' => $user->id,
+        ]);
         $ideaUno = Idea::first();
         $ideaUno->title = 'Mi primera idea';
         $ideaUno->save();
@@ -122,5 +126,5 @@ class MostrarIdeasTest extends TestCase
         $response = $this->get('/?page=2');
         $response->assertSee($ideaUno->title);
         $response->assertDontSee($ultimaIdea->title);
-   }
+    }
 }

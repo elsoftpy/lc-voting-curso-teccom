@@ -20,7 +20,7 @@ class IdeaFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first()->id,
             'categoria_id' => Categoria::inRandomOrder()->first()->id,
             'estado_id' => Estado::inRandomOrder()->first()->id,
             'title' => ucwords(fake()->words(4, true)),

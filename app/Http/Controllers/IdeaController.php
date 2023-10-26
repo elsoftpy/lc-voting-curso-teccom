@@ -19,7 +19,8 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         return view('ideas.show', [
-            'idea' => $idea,
+            'ideaVista' => $idea,
+            'votos' => $idea->votos()->count(),
         ]);
     }
 }
